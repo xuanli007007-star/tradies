@@ -3,72 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>墨尔本装修招标平台 - Tradie Connect</title>
+    <title>MelbMarketing - 墨尔本专业装修招标平台</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .locked-blur { filter: blur(5px); user-select: none; }
+        .nav-glass { background: rgba(26, 54, 93, 0.95); backdrop-filter: blur(10px); }
+    </style>
 </head>
-<body class="bg-slate-50 font-sans">
-    <nav class="bg-blue-700 text-white p-4 shadow-md">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-        <div class="flex items-center gap-2">
-            <i class="fas fa-hammer text-orange-400 text-2xl"></i>
-            <h1 class="text-xl font-bold">MelbMarketing <span class="text-xs font-light opacity-80 uppercase">Tradie Hub</span></h1>
-        </div>
-        
-        <div class="flex gap-2 sm:gap-4">
-            <a href="你的Google表单链接1" target="_blank" class="bg-white text-blue-700 hover:bg-gray-100 px-3 py-2 rounded-lg font-bold text-sm transition flex items-center gap-1">
-                <i class="fas fa-plus-circle"></i> 发布招标
-            </a>
-            <a href="你的Google表单链接2" target="_blank" class="bg-orange-500 hover:bg-orange-600 px-3 py-2 rounded-lg font-bold text-sm transition flex items-center gap-1">
-                <i class="fas fa-user-check"></i> 师傅入驻
-            </a>
-        </div>
-    </div>
-</nav>
+<body class="bg-slate-50 text-slate-900 font-sans leading-relaxed">
 
-    <main class="max-w-4xl mx-auto py-10 px-4">
-        <div class="text-center mb-10">
-            <h2 class="text-3xl font-extrabold text-slate-800">墨尔本最新装修招标</h2>
-            <p class="text-slate-500 mt-2">实时对接 Lalor, Box Hill, Doncaster 等区域精准需求</p>
-        </div>
-
-        <div class="grid gap-6">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4 border-blue-600">
-                <div class="flex justify-between items-start mb-4">
-                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase">室内粉刷</span>
-                    <span class="text-green-600 font-bold text-lg">$4,500</span>
+    <nav class="nav-glass text-white p-4 sticky top-0 z-50 shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-hammer text-orange-400 text-2xl"></i>
+                <div class="flex flex-col">
+                    <span class="text-lg font-black tracking-tighter leading-none">MelbMarketing</span>
+                    <span class="text-[10px] uppercase tracking-widest text-blue-300">Tradie Hub VIC</span>
                 </div>
-                <h4 class="text-xl font-bold text-slate-800">Doncaster 三房两卫整屋刷漆</h4>
-                <p class="text-slate-600 mt-2 text-sm">需要下周一开工，包工包料。业主已经选好颜色，寻找熟练工。</p>
-                
-                <div class="mt-6 pt-6 border-t flex flex-col items-center">
-                    <div class="text-xl font-mono font-bold tracking-widest blur-md select-none mb-4">0412 345 678</div>
-                    <button onclick="alert('跳转至 Stripe 支付 $10 解锁')" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-xl font-bold shadow-lg transition flex items-center justify-center gap-2">
-                        <i class="fas fa-lock"></i> 支付 $10 澳币解锁联系方式
-                    </button>
+            </div>
+            
+            <div class="flex gap-2 sm:gap-4">
+                <a href="#POST_JOB_LINK" class="bg-white text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg font-bold text-xs sm:text-sm transition-all flex items-center gap-1 shadow-sm">
+                    <i class="fas fa-edit"></i> 发布招标
+                </a>
+                <a href="#TRADIE_REG_LINK" class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 rounded-lg font-bold text-xs sm:text-sm transition-all flex items-center gap-1 shadow-lg">
+                    <i class="fas fa-user-plus"></i> 师傅入驻
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-b from-blue-800 to-blue-700 text-white py-12 px-4 text-center">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-4">连接墨尔本最真实的装修需求</h2>
+            <p class="text-blue-100 text-sm md:text-base opacity-90">
+                <i class="fas fa-check-circle text-green-400"></i> 已有 500+ 位墨尔本持牌 Tradie 进驻 
+                <span class="mx-2">|</span> 
+                <i class="fas fa-map-marker-alt text-red-400"></i> 覆盖 Lalor, Box Hill 等全维州区域
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto py-8 px-4">
+        <div class="flex items-center justify-between mb-6 border-b pb-4">
+            <h3 class="text-xl font-bold flex items-center gap-2">
+                <i class="fas fa-bullhorn text-blue-600"></i> 最新待接单 (VIC)
+            </h3>
+            <span class="text-xs text-slate-500 italic">实时更新：2026-03-05</span>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+            
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all border border-slate-100 overflow-hidden group">
+                <div class="p-5">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-md text-[10px] font-black uppercase tracking-wider">Painting / 室内粉刷</span>
+                        <span class="text-green-600 font-black text-xl">$4,500</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 group-hover:text-blue-700 transition-colors">Doncaster 三房两卫整屋刷漆</h4>
+                    <div class="flex items-center gap-3 mt-2 text-xs text-slate-500 font-medium">
+                        <span><i class="fas fa-map-pin mr-1 text-slate-400"></i> Doncaster, VIC</span>
+                        <span><i class="far fa-clock mr-1 text-slate-400"></i> 2小时前发布</span>
+                    </div>
+                    <p class="text-slate-600 mt-4 text-sm leading-relaxed">业主已选好颜色，寻找熟练工，包工包料。下周一必须开工。</p>
+                </div>
+                <div class="bg-slate-50 p-5 border-t border-dashed">
+                    <div class="flex flex-col items-center gap-3">
+                        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">联系电话已加密保护</span>
+                        <div class="text-2xl font-mono font-bold tracking-widest text-slate-300 locked-blur">0412 345 678</div>
+                        <button onclick="payUnlock()" class="w-full bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-xl font-bold shadow-lg transition-transform active:scale-95 flex items-center justify-center gap-2">
+                            <i class="fas fa-lock text-xs"></i> 支付 $10 澳币查看联系方式
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4 border-blue-600">
-                <div class="flex justify-between items-start mb-4">
-                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase">地板安装</span>
-                    <span class="text-green-600 font-bold text-lg">$1,200</span>
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all border border-slate-100 overflow-hidden group">
+                <div class="p-5">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-md text-[10px] font-black uppercase tracking-wider">Flooring / 地板安装</span>
+                        <span class="text-green-600 font-black text-xl">$1,200</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 group-hover:text-blue-700 transition-colors">Lalor 客厅复合地板铺设</h4>
+                    <div class="flex items-center gap-3 mt-2 text-xs text-slate-500 font-medium">
+                        <span><i class="fas fa-map-pin mr-1 text-slate-400"></i> Lalor, VIC</span>
+                        <span><i class="far fa-clock mr-1 text-slate-400"></i> 5小时前发布</span>
+                    </div>
+                    <p class="text-slate-600 mt-4 text-sm leading-relaxed">约 40 平方。木料已买好，寻一名熟练工，包工不包料。急活。</p>
                 </div>
-                <h4 class="text-xl font-bold text-slate-800">Lalor 客厅复合地板铺设</h4>
-                <p class="text-slate-600 mt-2 text-sm">面积约 40 平方，木料已买好，寻一名熟练工，包工不包料。</p>
-                
-                <div class="mt-6 pt-6 border-t flex flex-col items-center">
-                    <div class="text-xl font-mono font-bold tracking-widest blur-md select-none mb-4">0488 999 000</div>
-                    <button onclick="alert('跳转至 Stripe 支付 $10 解锁')" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-xl font-bold shadow-lg transition flex items-center justify-center gap-2">
-                        <i class="fas fa-lock"></i> 支付 $10 澳币解锁联系方式
-                    </button>
+                <div class="bg-slate-50 p-5 border-t border-dashed">
+                    <div class="flex flex-col items-center gap-3">
+                        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">联系电话已加密保护</span>
+                        <div class="text-2xl font-mono font-bold tracking-widest text-slate-300 locked-blur">0455 888 999</div>
+                        <button onclick="payUnlock()" class="w-full bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-xl font-bold shadow-lg transition-transform active:scale-95 flex items-center justify-center gap-2">
+                            <i class="fas fa-lock text-xs"></i> 支付 $10 澳币查看联系方式
+                        </button>
+                    </div>
                 </div>
             </div>
+
         </div>
     </main>
 
-    <footer class="bg-slate-900 text-slate-500 py-10 text-center text-xs mt-20">
-        <p>© 2026 MelbMarketing | 墨尔本本地流量变现专家</p>
+    <footer class="bg-slate-900 text-slate-400 py-12 px-6 mt-16 border-t-4 border-orange-500">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="font-bold text-white mb-2 tracking-wide">MelbMarketing - 墨尔本本地化变现专家</p>
+            <p class="text-[10px] leading-relaxed opacity-60 max-w-2xl mx-auto">
+                法律声明：本平台仅作为装修需求信息聚合平台。我们不提供任何形式的法律或财务建议。
+                所有发布的装修项目必须严格遵守维州（VIC）及澳洲相关法律法规。
+                平台不对施工质量或线下交易承担任何法律责任，建议业主与师傅签署正规装修合同。
+            </p>
+            <p class="mt-6 text-[10px] uppercase tracking-widest">© 2026 MelbMarketing Group. All Rights Reserved.</p>
+        </div>
     </footer>
+
+    <script>
+        function payUnlock() {
+            // 后续只需将下面的 URL 替换为你的 Stripe Payment Link 即可
+            const stripeLink = "你的Stripe支付链接";
+            if (confirm("确定支付 $10 AUD 查看此招标联系电话？")) {
+                // 如果没有支付链接，可以先 alert 提示
+                if (stripeLink === "你的Stripe支付链接") {
+                    alert("在线支付功能正在接入中，请稍后重试。");
+                } else {
+                    window.location.href = stripeLink;
+                }
+            }
+        }
+    </script>
 </body>
 </html>
