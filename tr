@@ -1,129 +1,176 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MelbMarketing - 墨尔本装修招标平台</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .locked-blur { filter: blur(4px); user-select: none; }
-    </style>
-</head>
-<body class="bg-gray-50 font-sans">
+import React, { useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { MapPin, Phone, DollarSign, Clock, Hammer, ShieldCheck } from "lucide-react";
 
-    <nav class="bg-blue-700 text-white p-4 shadow-lg">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold tracking-tight">MelbMarketing <span class="text-sm font-normal">Renovations</span></h1>
-            <div class="space-x-4">
-                <button onclick="showSection('post')" class="bg-white text-blue-700 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">业主发帖</button>
-                <button onclick="showSection('browse')" class="border border-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 transition">师傅找活</button>
-            </div>
+export default function MelbourneRenovations() {
+  const [isPaid, setIsPaid] = useState(false);
+
+  // 模拟数据
+  const jobs = [
+    {
+      id: 1,
+      title: "Doncaster 三房两卫刷漆",
+      suburb: "Doncaster, VIC",
+      category: "Painting",
+      budget: "$4,500",
+      time: "2h ago",
+      desc: "需要有全套工具，最好是下周一能开工。主要是室内墙面和天花板。",
+      phone: "0412 345 678"
+    },
+    {
+      id: 2,
+      title: "Lalor 客厅复合地板铺设",
+      suburb: "Lalor, VIC",
+      category: "Flooring",
+      budget: "$1,200",
+      time: "5h ago",
+      desc: "面积约 40 平方，木料已买好，寻一名熟练工，包工不包料。",
+      phone: "0488 999 000"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-slate-50">
+      {/* Header */}
+      <header className="bg-blue-700 text-white py-6 px-4 shadow-md">
+        <div className="max-w-6xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <Hammer className="h-8 w-8 text-orange-400" />
+            <h1 className="text-2xl font-bold tracking-tight">MelbMarketing <span className="font-light opacity-80 text-sm">TRADIE HUB</span></h1>
+          </div>
+          <div className="flex gap-3">
+            <Button variant="outline" className="text-white border-white hover:bg-blue-600 hidden sm:flex">Log In</Button>
+            <Button className="bg-orange-500 hover:bg-orange-600 text-white">Join as Tradie</Button>
+          </div>
         </div>
-    </nav>
+      </header>
 
-    <header class="bg-blue-600 text-white py-12 px-4 text-center">
-        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">连接墨尔本最靠谱的装修需求</h2>
-        <p class="text-blue-100">已有 500+ 位墨尔本 Tradie 进驻</p>
-    </header>
+      <main className="max-w-6xl mx-auto py-10 px-4">
+        <Tabs defaultValue="browse" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 mb-8 max-w-md mx-auto">
+            <TabsTrigger value="post">业主发布需求</TabsTrigger>
+            <TabsTrigger value="browse">师傅找活赚钱</TabsTrigger>
+          </TabsList>
 
-    <main class="container mx-auto p-6">
-        
-        <section id="section-post" class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-xl hidden">
-            <h3 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-4">发布您的装修需求</h3>
-            <form class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">所在 Suburb</label>
-                    <input type="text" placeholder="例如: Box Hill, Glen Waverley" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+          {/* 业主发帖区 */}
+          <TabsContent value="post">
+            <Card className="max-w-2xl mx-auto shadow-xl">
+              <CardHeader className="bg-slate-50">
+                <CardTitle className="text-2xl">发布您的装修招标</CardTitle>
+                <CardDescription>免费发布，系统将自动通知墨尔本 500+ 专业师傅</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6 pt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>所在 Suburb</Label>
+                    <Input placeholder="例如: Box Hill" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>装修类别</Label>
+                    <Select>
+                      <SelectTrigger>
+                        <SelectValue placeholder="请选择类别" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="paint">室内粉刷</SelectItem>
+                        <SelectItem value="floor">地板/地毯</SelectItem>
+                        <SelectItem value="bath">卫浴翻新</SelectItem>
+                        <SelectItem value="garden">花园/围栏</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">装修类别</label>
-                        <select class="w-full p-3 border rounded-lg outline-none">
-                            <option>室内粉刷</option>
-                            <option>卫浴翻新</option>
-                            <option>地板安装</option>
-                            <option>围栏 Fence</option>
-                            <option>花园割草</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">预算范围 (AUD)</label>
-                        <input type="number" placeholder="$" class="w-full p-3 border rounded-lg outline-none">
-                    </div>
+                <div className="space-y-2">
+                  <Label>预算估算 (AUD)</Label>
+                  <div className="relative">
+                    <DollarSign className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
+                    <Input className="pl-9" type="number" placeholder="您的心理价位" />
+                  </div>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">需求描述</label>
-                    <textarea rows="4" placeholder="请详细描述您的需求..." class="w-full p-3 border rounded-lg outline-none"></textarea>
+                <div className="space-y-2">
+                  <Label>需求详情</Label>
+                  <textarea className="w-full min-h-[120px] p-3 rounded-md border border-input bg-background text-sm shadow-sm" placeholder="请详细描述您的需求，越详细报价越准..." />
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">您的联系电话 (仅对付费师傅可见)</label>
-                    <input type="tel" placeholder="04xx xxx xxx" class="w-full p-3 border rounded-lg outline-none">
+                <div className="space-y-2">
+                  <Label>联系电话 (仅对师傅可见)</Label>
+                  <Input type="tel" placeholder="04xx xxx xxx" />
                 </div>
-                <button type="button" onclick="alert('发布成功！审核通过后将出现在列表。')" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition">免费发布需求</button>
-            </form>
-        </section>
+              </CardContent>
+              <CardFooter className="bg-slate-50 border-t flex justify-between p-6">
+                <div className="flex items-center text-xs text-slate-500 italic">
+                  <ShieldCheck className="h-4 w-4 mr-1 text-green-500" /> 您的信息将被加密保护
+                </div>
+                <Button className="bg-blue-700 hover:bg-blue-800 px-8">立即发布</Button>
+              </CardFooter>
+            </Card>
+          </TabsContent>
 
-        <section id="section-browse" class="block">
-            <div class="flex justify-between items-center mb-8">
-                <h3 class="text-2xl font-bold text-gray-800">最新招标信息 (VIC)</h3>
-                <div class="text-sm text-gray-500">
-                    <span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-1"></span> 实时更新中
-                </div>
+          {/* 师傅浏览区 */}
+          <TabsContent value="browse" className="space-y-6">
+            <div className="flex justify-between items-end mb-4">
+              <div>
+                <h3 className="text-xl font-bold">墨尔本最新招标</h3>
+                <p className="text-sm text-slate-500 italic">共找到 12 个活跃项目</p>
+              </div>
+              <Button variant="link" className="text-blue-700 font-bold">查看更多历史单 →</Button>
             </div>
 
-            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition border border-gray-100">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase">室内粉刷</span>
-                        <span class="text-gray-400 text-xs">2小时前发布</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {jobs.map((job) => (
+                <Card key={job.id} className="hover:shadow-2xl transition-shadow border-t-4 border-t-blue-600">
+                  <CardHeader className="pb-2">
+                    <div className="flex justify-between items-start">
+                      <Badge variant="secondary" className="bg-blue-50 text-blue-700 hover:bg-blue-50">
+                        {job.category}
+                      </Badge>
+                      <div className="flex items-center text-xs text-slate-400">
+                        <Clock className="h-3 w-3 mr-1" /> {job.time}
+                      </div>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-800 mb-2">Doncaster 三房两卫刷漆</h4>
-                    <p class="text-gray-600 text-sm mb-4">需要有全套工具，最好是下周一能开工。预算 $4,500 左右。</p>
-                    
-                    <div class="bg-gray-50 p-4 rounded-xl border border-dashed border-gray-300 relative">
-                        <p class="text-xs text-gray-400 mb-1 italic text-center">联系方式已加密</p>
-                        <p class="text-lg font-mono text-center locked-blur">0412 345 678</p>
-                        <button onclick="payUnlock()" class="mt-4 w-full bg-orange-500 text-white py-2 rounded-lg font-bold hover:bg-orange-600 shadow-md">支付 $5 查看电话</button>
+                    <CardTitle className="text-lg mt-3">{job.title}</CardTitle>
+                    <div className="flex items-center text-sm text-slate-500 mt-1">
+                      <MapPin className="h-3 w-3 mr-1" /> {job.suburb}
                     </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition border border-gray-100">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase">地板安装</span>
-                        <span class="text-gray-400 text-xs">5小时前发布</span>
+                  </CardHeader>
+                  <CardContent className="py-4">
+                    <p className="text-sm text-slate-600 line-clamp-2 mb-4">{job.desc}</p>
+                    <div className="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+                      <span className="text-xs font-semibold text-slate-400 uppercase">预算:</span>
+                      <span className="text-lg font-bold text-green-600">{job.budget}</span>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-800 mb-2">Lalor 客厅复合地板铺设</h4>
-                    <p class="text-gray-600 text-sm mb-4">面积约 40 平方，木料已买好，寻一名熟练工。预算面议。</p>
-                    
-                    <div class="bg-gray-50 p-4 rounded-xl border border-dashed border-gray-300 relative">
-                        <p class="text-xs text-gray-400 mb-1 italic text-center">联系方式已加密</p>
-                        <p class="text-lg font-mono text-center locked-blur">0488 999 000</p>
-                        <button onclick="payUnlock()" class="mt-4 w-full bg-orange-500 text-white py-2 rounded-lg font-bold hover:bg-orange-600 shadow-md">支付 $5 查看电话</button>
+                  </CardContent>
+                  <CardFooter className="bg-slate-50/50 pt-4 flex flex-col gap-3">
+                    <div className="w-full text-center">
+                      <span className={`text-xl font-mono font-bold tracking-widest ${!isPaid ? 'blur-sm select-none' : ''}`}>
+                        {job.phone}
+                      </span>
                     </div>
-                </div>
+                    <Button 
+                      className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold"
+                      onClick={() => alert("跳转到 Stripe 支付 $10 AUD")}
+                    >
+                      支付 $10 解锁联系方式
+                    </Button>
+                  </CardFooter>
+                </Card>
+              ))}
             </div>
-        </section>
-    </main>
+          </TabsContent>
+        </Tabs>
+      </main>
 
-    <footer class="mt-20 bg-gray-800 text-gray-400 py-10 px-6 text-center">
-        <p>© 2026 MelbMarketing Services. All Rights Reserved.</p>
-        <p class="text-xs mt-2 italic">免责声明：平台仅作为信息中介，施工质量请自行签署正规澳洲合同。</p>
-    </footer>
-
-    <script>
-        function showSection(id) {
-            document.getElementById('section-post').classList.add('hidden');
-            document.getElementById('section-browse').classList.add('hidden');
-            document.getElementById('section-' + id).classList.remove('hidden');
-        }
-
-        function payUnlock() {
-            // 这里替换成你的 Stripe 支付链接
-            const stripeUrl = "https://buy.stripe.com/test_xxxxxxxx"; 
-            if(confirm("确定支付 $5 澳币以获取该线索？\n(测试阶段将直接跳转模拟支付)")) {
-                window.location.href = stripeUrl;
-            }
-        }
-    </script>
-</body>
-</html>
+      <footer className="bg-slate-900 text-slate-400 py-12 mt-20 text-center px-4">
+        <p className="mb-2">© 2026 MelbMarketing Services. Melbourne, VIC</p>
+        <p className="text-xs max-w-xl mx-auto opacity-60">
+          Disclaimer: Platform acts as a lead aggregator only. We do not provide financial advice or building certifications. Tradies must verify their own licenses before quoting.
+        </p>
+      </footer>
+    </div>
+  );
+}
