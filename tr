@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MelbMarketing - 墨尔本装修招标平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .locked-blur { filter: blur(4px); user-select: none; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <nav class="bg-blue-700 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tight">MelbMarketing <span class="text-sm font-normal">Renovations</span></h1>
+            <div class="space-x-4">
+                <button onclick="showSection('post')" class="bg-white text-blue-700 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">业主发帖</button>
+                <button onclick="showSection('browse')" class="border border-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 transition">师傅找活</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-blue-600 text-white py-12 px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">连接墨尔本最靠谱的装修需求</h2>
+        <p class="text-blue-100">已有 500+ 位墨尔本 Tradie 进驻</p>
+    </header>
+
+    <main class="container mx-auto p-6">
+        
+        <section id="section-post" class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-xl hidden">
+            <h3 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-4">发布您的装修需求</h3>
+            <form class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">所在 Suburb</label>
+                    <input type="text" placeholder="例如: Box Hill, Glen Waverley" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">装修类别</label>
+                        <select class="w-full p-3 border rounded-lg outline-none">
+                            <option>室内粉刷</option>
+                            <option>卫浴翻新</option>
+                            <option>地板安装</option>
+                            <option>围栏 Fence</option>
+                            <option>花园割草</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">预算范围 (AUD)</label>
+                        <input type="number" placeholder="$" class="w-full p-3 border rounded-lg outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">需求描述</label>
+                    <textarea rows="4" placeholder="请详细描述您的需求..." class="w-full p-3 border rounded-lg outline-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">您的联系电话 (仅对付费师傅可见)</label>
+                    <input type="tel" placeholder="04xx xxx xxx" class="w-full p-3 border rounded-lg outline-none">
+                </div>
+                <button type="button" onclick="alert('发布成功！审核通过后将出现在列表。')" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition">免费发布需求</button>
+            </form>
+        </section>
+
+        <section id="section-browse" class="block">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="text-2xl font-bold text-gray-800">最新招标信息 (VIC)</h3>
+                <div class="text-sm text-gray-500">
+                    <span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-1"></span> 实时更新中
+                </div>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase">室内粉刷</span>
+                        <span class="text-gray-400 text-xs">2小时前发布</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-2">Doncaster 三房两卫刷漆</h4>
+                    <p class="text-gray-600 text-sm mb-4">需要有全套工具，最好是下周一能开工。预算 $4,500 左右。</p>
+                    
+                    <div class="bg-gray-50 p-4 rounded-xl border border-dashed border-gray-300 relative">
+                        <p class="text-xs text-gray-400 mb-1 italic text-center">联系方式已加密</p>
+                        <p class="text-lg font-mono text-center locked-blur">0412 345 678</p>
+                        <button onclick="payUnlock()" class="mt-4 w-full bg-orange-500 text-white py-2 rounded-lg font-bold hover:bg-orange-600 shadow-md">支付 $5 查看电话</button>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition border border-gray-100">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase">地板安装</span>
+                        <span class="text-gray-400 text-xs">5小时前发布</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-2">Lalor 客厅复合地板铺设</h4>
+                    <p class="text-gray-600 text-sm mb-4">面积约 40 平方，木料已买好，寻一名熟练工。预算面议。</p>
+                    
+                    <div class="bg-gray-50 p-4 rounded-xl border border-dashed border-gray-300 relative">
+                        <p class="text-xs text-gray-400 mb-1 italic text-center">联系方式已加密</p>
+                        <p class="text-lg font-mono text-center locked-blur">0488 999 000</p>
+                        <button onclick="payUnlock()" class="mt-4 w-full bg-orange-500 text-white py-2 rounded-lg font-bold hover:bg-orange-600 shadow-md">支付 $5 查看电话</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-20 bg-gray-800 text-gray-400 py-10 px-6 text-center">
+        <p>© 2026 MelbMarketing Services. All Rights Reserved.</p>
+        <p class="text-xs mt-2 italic">免责声明：平台仅作为信息中介，施工质量请自行签署正规澳洲合同。</p>
+    </footer>
+
+    <script>
+        function showSection(id) {
+            document.getElementById('section-post').classList.add('hidden');
+            document.getElementById('section-browse').classList.add('hidden');
+            document.getElementById('section-' + id).classList.remove('hidden');
+        }
+
+        function payUnlock() {
+            // 这里替换成你的 Stripe 支付链接
+            const stripeUrl = "https://buy.stripe.com/test_xxxxxxxx"; 
+            if(confirm("确定支付 $5 澳币以获取该线索？\n(测试阶段将直接跳转模拟支付)")) {
+                window.location.href = stripeUrl;
+            }
+        }
+    </script>
+</body>
+</html>
